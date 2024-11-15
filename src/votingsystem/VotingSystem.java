@@ -35,26 +35,27 @@ public class VotingSystem {
         }
     }
 
+    // Новый метод для получения списка кандидатов
+    public List<Candidate> getCandidates() {
+        return candidates;
+    }
+
     public static void main(String[] args) {
-        // Ensure System.out uses UTF-8 encoding
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         
         VotingSystem votingSystem = new VotingSystem();
         Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
-        // Ввод количества кандидатов
         System.out.print("Введите количество кандидатов: ");
         int candidateCount = scanner.nextInt();
-        scanner.nextLine(); // Очистка строки после ввода числа
+        scanner.nextLine(); 
 
-        // Ввод имен кандидатов
         for (int i = 1; i <= candidateCount; i++) {
             System.out.print("Введите имя кандидата #" + i + ": ");
             String name = scanner.nextLine();
             votingSystem.addCandidate(name);
         }
 
-        // Процесс голосования
         System.out.println("\nГолосование началось. Введите 'стоп' для завершения.");
         while (true) {
             System.out.print("Введите имя кандидата, за которого хотите проголосовать: ");
@@ -65,7 +66,6 @@ public class VotingSystem {
             votingSystem.castVote(candidateName);
         }
 
-        // Показ результатов
         votingSystem.showResults();
         scanner.close();
     }
